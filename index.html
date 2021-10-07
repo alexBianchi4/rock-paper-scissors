@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+
+        function whoWon(player,cpu){
+            if(player == "rock"){ 
+                switch(cpu){
+                    case "rock":
+                        return null;
+                    case "paper":
+                        return "cpu";
+                    case "scissors":
+                        return "player";
+                }
+            }else if(player == "paper"){
+                switch(cpu){
+                    case "rock":
+                        return "player";
+                    case "paper":
+                        return null;
+                    case "scissors":
+                        return "cpu";
+                }
+            }else{ // played scissors
+                switch(cpu){ 
+                    case "rock":
+                        return "cpu";
+                    case "paper":
+                        return "player";
+                    case "scissors":
+                        return null;
+                }
+            }
+        }
+
+        function computerPlay(){
+            let rand = Math.floor(Math.random()*3);
+            switch(rand){
+                case 0:
+                    return "rock";
+                case 1:
+                    return "paper";
+                default:
+                    return "scissors";
+            }
+        }
+
+        function main(){
+            let player;
+            while(true){
+                player = prompt('what do you want to play (rock, paper, scissors)');
+                if(player == "rock" || player == "paper" || player == "scissors"){
+                    break;
+                }
+            }
+            let cpu = computerPlay();
+            console.log(`cpu played ${cpu}`);
+            let winner = whoWon(player,cpu);
+            switch(winner){
+                case "player":
+                    console.log("player won");
+                    break;
+                case "cpu":
+                    console.log("cpu won");
+                    break;
+                default:
+                    console.log("draw");
+            }
+            
+        }
+        main();
+    </script>
+
+</body>
+</html>
